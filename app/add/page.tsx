@@ -1,6 +1,5 @@
 'use client'
 
-import {redirect} from "next/navigation";
 import Link from "next/link";
 
 export default async function addHero() {
@@ -27,7 +26,7 @@ export default async function addHero() {
         if (!response.ok) {
             throw new Error(response.statusText)
         } else {
-            redirect('/')
+            alert("Hero added successfully!")
         }
     }
 
