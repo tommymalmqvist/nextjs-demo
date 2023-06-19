@@ -26,7 +26,6 @@ export default async function addHero() {
         })
         if (!response.ok) {
             throw new Error(response.statusText)
-            return response.json()
         } else {
             redirect('/')
         }
