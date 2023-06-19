@@ -1,6 +1,10 @@
 'use client'
 
+import {redirect} from "next/navigation";
+import Link from "next/link";
+
 export default async function addHero() {
+
     async function handleSubmit(event: any) {
         event.preventDefault()
         const hero = {
@@ -11,6 +15,7 @@ export default async function addHero() {
             health: Number(event.target.health.value),
             mana: Number(event.target.mana.value),
         }
+
         // call ADD api on the backend
         const response = await fetch('/api', {
             method: 'POST',
@@ -21,6 +26,9 @@ export default async function addHero() {
         })
         if (!response.ok) {
             throw new Error(response.statusText)
+            return response.json()
+        } else {
+            redirect('/')
         }
     }
 
@@ -37,6 +45,9 @@ export default async function addHero() {
                             type="name"
                             name="name"
                             id="name"
+                            required={true}
+                            minLength={3}
+                            maxLength={20}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Name"
                         />
@@ -44,6 +55,9 @@ export default async function addHero() {
                             type="strength"
                             name="strength"
                             id="strength"
+                            required={true}
+                            minLength={1}
+                            maxLength={3}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Strength"
                         />
@@ -51,6 +65,9 @@ export default async function addHero() {
                             type="dexterity"
                             name="dexterity"
                             id="dexterity"
+                            required={true}
+                            minLength={1}
+                            maxLength={3}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Dexterity"
                         />
@@ -58,6 +75,9 @@ export default async function addHero() {
                             type="intelligence"
                             name="intelligence"
                             id="intelligence"
+                            required={true}
+                            minLength={1}
+                            maxLength={3}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Intelligence"
                         />
@@ -65,6 +85,9 @@ export default async function addHero() {
                             type="health"
                             name="health"
                             id="health"
+                            required={true}
+                            minLength={1}
+                            maxLength={3}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Health"
                         />
@@ -72,6 +95,9 @@ export default async function addHero() {
                             type="mana"
                             name="mana"
                             id="mana"
+                            required={true}
+                            minLength={1}
+                            maxLength={3}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
                             placeholder="Mana"
                         />
@@ -84,6 +110,14 @@ export default async function addHero() {
                         >
                             Add Hero
                         </button>
+                        <Link
+                            href="/"
+                            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500`}
+                        >
+
+                                Go Back
+
+                        </Link>
                     </div>
                 </form>
             </div>
